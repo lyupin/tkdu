@@ -430,12 +430,15 @@ def main(f=sys.stdin):
 #       name = name.split("/")
         
         try: # For normal lines of du output
-            sz = long(sz)*1024
-            putname(files, name, sz)
+            try: # for python2
+                sz = long(sz)*1024
+            except NameError: # For python3, there is no "long" type any more, use "int" instead.
+                sz = int(sz)*1024
         except ValueError: # For error lines of du output, which is caused by 'Permission denied' when accessing certain folders of other users.
             pass # do nothing (if met with permission error)!
-            #print "Something went wrong {!s}".format(line)   # the problem value 
-
+            #print "Something went wrong {!s}".format(line)   # the problem value
+            
+    putname(files, name, sz)
     doit(name, files)
 
 
