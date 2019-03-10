@@ -438,7 +438,8 @@ def main(f=sys.stdin):
             pass # do nothing (if met with permission error)!
             #print "Something went wrong {!s}".format(line)   # the problem value
             
-    putname(files, name, sz)
+        putname(files, name, sz)
+
     doit(name, files)
 
 
